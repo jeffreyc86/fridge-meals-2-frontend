@@ -1,7 +1,7 @@
 import "../stylesheets/Navbar.css";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -9,6 +9,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 function Navbar() {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const history = useHistory()
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -23,7 +24,7 @@ function Navbar() {
   return (
     <div className="navbar">
       <img href={null} alt="logo" />
-      {!currentUser ? (
+      {currentUser ? (
         <div className="nav-links">
           <NavLink to="" className="nav-center-links">
             Recipes you can make
@@ -63,15 +64,15 @@ function Navbar() {
           onClose={handleClose}
         >
           {currentUser ? (
-            <>
+            <div>
               <MenuItem>Profile</MenuItem>
               <MenuItem>Log Out</MenuItem>
-            </>
+            </div>
           ) : (
-            <>
+              <div>
               <MenuItem>Sign Up</MenuItem>
-              <MenuItem>Log In</MenuItem>
-            </>
+              <MenuItem onClick={() => history.push("login")}>Log In</MenuItem>
+              </div>
           )}
         </Menu>
       </div>

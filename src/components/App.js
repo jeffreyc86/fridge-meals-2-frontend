@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setCurrentUser } from "../features/userSlice";
 import Home from './Home'
 import Navbar from './Navbar';
-
+import LogIn from './LogIn';
 
 function App() {
 
@@ -32,10 +32,13 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <Switch>
-        <Navbar />
-        <Route path="/">
+        <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/login">
+          <LogIn />
         </Route>
       </Switch>
     </div>
