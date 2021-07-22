@@ -1,0 +1,9 @@
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  padding: .8rem .5rem
+}
+
+.nav-center-links{
+  margin: 0 10px;
+}
